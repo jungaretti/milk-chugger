@@ -1,3 +1,4 @@
+import Button from "react-bootstrap/Button";
 import ProfileConsumption from "./ProfileConsumption";
 import ProfileHistory from "./ProfileHistory";
 import ProfileStatistics from "./ProfileStatistics";
@@ -9,6 +10,7 @@ export default function Profile({ history, username }) {
 
   return (
     <div>
+      <Button variant="primary">Primary</Button>
       <div>
         <p>Hello, {username}</p>
       </div>
