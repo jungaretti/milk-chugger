@@ -28,8 +28,8 @@ firebase.initializeApp({
 function App() {
   return (
     <div>
-      <Profile username={"buckybadger"} history={history} />;
-      <GlobalTotals gallons={56} regions={regions} users={users} />;
+      <Profile username={"buckybadger"} history={history} />
+      <GlobalTotals gallons={56} regions={regions} users={users} />
       <Log gallons={4} />
     </div>
   );
