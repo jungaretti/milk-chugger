@@ -2,11 +2,13 @@ export default function Leaderboard({ title, data }) {
   return (
     <div>
       <p>{title}</p>
-      {Object.entries(data).map(([key, value]) => (
-        <p>
-          {key}: {value}
-        </p>
-      ))}
+      <ul>
+        {Object.entries(data).map(([key, value]) => (
+          <li key={key}>
+            {key}: {value}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
