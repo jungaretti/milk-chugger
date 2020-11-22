@@ -4,13 +4,14 @@ import firebase from "firebase/app";
 import "firebase/auth";
 
 firebase.initializeApp({
-  apiKey: "AIzaSyDTgXrEUqFh1_g-7UxZ3zpJVMrwjw6rviM",
-  authDomain: "blazin-disco.firebaseapp.com",
-  databaseURL: "https://blazin-disco.firebaseio.com",
-  projectId: "blazin-disco",
-  storageBucket: "blazin-disco.appspot.com",
-  messagingSenderId: "394649767446",
-  appId: "1:394649767446:web:3dc9e36b56b4282ba1af37",
+    apiKey: "AIzaSyD1J0xsmgmBuebl2ijcKrDHY9SsdM2_9nw",
+    authDomain: "milk-chugger.firebaseapp.com",
+    databaseURL: "https://milk-chugger.firebaseio.com",
+    projectId: "milk-chugger",
+    storageBucket: "milk-chugger.appspot.com",
+    messagingSenderId: "619120327033",
+    appId: "1:619120327033:web:36b6fa731bfa5e5a7017a8",
+    measurementId: "G-RY8LVPQ59F",
 });
 
 function App() {
