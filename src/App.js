@@ -8,7 +8,7 @@ import "firebase/auth";
 
 const history = {};
 history[new Date()] = 56;
- 
+
 const regions = {};
 regions["Wisconsin"] = 56;
 const users = {};
