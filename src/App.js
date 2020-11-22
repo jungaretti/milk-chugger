@@ -2,6 +2,7 @@ import "./App.css";
 import Log from "./components/Log";
 import Profile from "./components/Profile";
 import GlobalTotals from "./components/GlobalTotals";
+import NavBar from "./components/NavBar";
 
 import firebase from "firebase/app";
 import "firebase/auth";
@@ -28,6 +29,8 @@ firebase.initializeApp({
 function App() {
   return (
     <div>
+      
+      <NavBar/>
       <Profile username={"buckybadger"} history={history} />
       <GlobalTotals gallons={56} regions={regions} users={users} />
       <Log gallons={4} />
