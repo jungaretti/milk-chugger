@@ -1,7 +1,7 @@
 
 import {Navbar, Nav, Button}  from 'react-bootstrap';
 
-export default function NavBar({isLoggedIn, logInWithGoogle, signOut}) {
+export default function NavBar({logInWithGoogle, signOut, user}) {
   return (
     <div>
         <span>
@@ -17,7 +17,7 @@ export default function NavBar({isLoggedIn, logInWithGoogle, signOut}) {
                 <Nav.Link href="profile">Profile</Nav.Link>
             </Nav>
             <Nav  className="mr-sm-2">
-              {isLoggedIn ? (<Button onClick={signOut}>Sign Out</Button>) : (<Button onClick={logInWithGoogle}>Log In with Google</Button>)}
+              {user ? (<Button onClick={signOut}>Sign Out</Button>) : (<Button onClick={logInWithGoogle}>Log In with Google</Button>)}
             </Nav>
         </Navbar.Collapse>
         </Navbar>

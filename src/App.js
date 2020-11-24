@@ -49,7 +49,7 @@ function App() {
   return (
     <Router>
     <div>
-      <NavBar isLoggedIn={user} logInWithGoogle={logInWithGoogle} signOut={signOut} />
+      <NavBar logInWithGoogle={logInWithGoogle} signOut={signOut} user={user} />
       <Switch>
         <Route path="/profile">
           <Profile username={"buckybadger"} history={history} />
