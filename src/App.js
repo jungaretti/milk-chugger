@@ -44,7 +44,6 @@ function App() {
       <Switch>
         <Route path="/profile">
           <Profile username={"buckybadger"} history={history} />
-          <Log gallons={4} />
         </Route>
         <Route path="/dashboard">
           <GlobalTotals gallons={56} regions={regions} users={users} />
