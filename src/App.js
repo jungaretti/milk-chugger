@@ -6,9 +6,9 @@ import NavBar from "./components/NavBar";
 
 import firebase from "firebase/app";
 import "firebase/auth";
+import "firebase/database";
 import { useAuthState } from "react-firebase-hooks/auth";
 
-import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 const history = {};
@@ -52,7 +52,10 @@ function App() {
         />
         <Switch>
           <Route path="/profile">
-            <Profile username={"buckybadger"} history={history} />
+            <Profile
+              uid={"rM1MFZbeujbk5yhbWSVJpXo2LJG2"}
+              database={firebase.database()}
+            />
           </Route>
           <Route path="/dashboard">
             <GlobalTotals gallons={56} regions={regions} users={users} />
