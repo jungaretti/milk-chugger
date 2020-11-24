@@ -6,14 +6,10 @@ import NavBar from "./components/NavBar";
 
 import firebase from "firebase/app";
 import "firebase/auth";
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { useAuthState } from "react-firebase-hooks/auth";
 
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 const history = {};
 history[new Date()] = 56;
@@ -48,22 +44,25 @@ function App() {
 
   return (
     <Router>
-    <div>
-      <NavBar logInWithGoogle={logInWithGoogle} signOut={signOut} user={user} />
-      <Switch>
-        <Route path="/profile">
-          <Profile username={"buckybadger"} history={history} />
-        </Route>
-        <Route path="/dashboard">
-          <GlobalTotals gallons={56} regions={regions} users={users} />
-        </Route>
-        <Route path="/log">
-          <Log gallons={4} />
-        </Route>
-      </Switch>
-    </div>
-  </Router>
-    
+      <div>
+        <NavBar
+          logInWithGoogle={logInWithGoogle}
+          signOut={signOut}
+          user={user}
+        />
+        <Switch>
+          <Route path="/profile">
+            <Profile username={"buckybadger"} history={history} />
+          </Route>
+          <Route path="/dashboard">
+            <GlobalTotals gallons={56} regions={regions} users={users} />
+          </Route>
+          <Route path="/log">
+            <Log gallons={4} />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
