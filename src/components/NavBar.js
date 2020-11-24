@@ -1,6 +1,6 @@
-import { Navbar, Nav } from "react-bootstrap";
+import { Navbar, Nav, Button } from "react-bootstrap";
 
-export default function NavBar() {
+export default function NavBar({ logInWithGoogle, signOut, user }) {
   return (
     <div>
       <span>
@@ -14,8 +14,15 @@ export default function NavBar() {
               <Nav.Link href="dashboard">Dashboard</Nav.Link>
               <Nav.Link href="log">Add Log</Nav.Link>
             </Nav>
-            <Nav inline className="mr-sm-2">
+            <Nav className="mr-sm-2">
               <Nav.Link href="profile">Profile</Nav.Link>
+            </Nav>
+            <Nav className="mr-sm-2">
+              {user ? (
+                <Button onClick={signOut}>Sign Out</Button>
+              ) : (
+                <Button onClick={logInWithGoogle}>Log In with Google</Button>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Navbar>
