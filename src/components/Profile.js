@@ -10,7 +10,10 @@ export default function Profile({ history }) {
 
   return (
     <div>
-      <Login />
+      <Button variant="primary">Press 4 milk you democrat</Button>
+      <div>
+        <p>Hello, {username}</p>
+      </div>
       <ProfileConsumption gallons={gallons} />
       <ProfileStatistics gallons={gallons} />
       <ProfileHistory history={history} />

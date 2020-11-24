@@ -2,9 +2,17 @@ import "./App.css";
 import Log from "./components/Log";
 import Profile from "./components/Profile";
 import GlobalTotals from "./components/GlobalTotals";
+import NavBar from "./components/NavBar";
 
 import firebase from "firebase/app";
 import "firebase/auth";
+
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
 
 const history = {};
 history[new Date()] = 56;
@@ -27,11 +35,23 @@ firebase.initializeApp({
 
 function App() {
   return (
+    <Router>
     <div>
-      <Profile username={"buckybadger"} history={history} />
-      <GlobalTotals gallons={56} regions={regions} users={users} />
-      <Log gallons={4} />
+      <NavBar/>
+      <Switch>
+        <Route path="/profile">
+          <Profile username={"buckybadger"} history={history} />
+        </Route>
+        <Route path="/dashboard">
+          <GlobalTotals gallons={56} regions={regions} users={users} />
+        </Route>
+        <Route path="/log">
+          <Log gallons={4} />
+        </Route>
+      </Switch>
     </div>
+  </Router>
+    
   );
 }
 
