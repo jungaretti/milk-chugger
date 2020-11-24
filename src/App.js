@@ -6,6 +6,7 @@ import NavBar from "./components/NavBar";
 
 import firebase from "firebase/app";
 import "firebase/auth";
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 import React from "react";
 import {
@@ -33,11 +34,22 @@ firebase.initializeApp({
   measurementId: "G-RY8LVPQ59F",
 });
 
+function logInWithGoogle() {
+  const provider = new firebase.auth.GoogleAuthProvider();
+  firebase.auth().signInWithPopup(provider);
+}
+
+function signOut() {
+  firebase.auth().signOut();
+}
+
 function App() {
+  const [user, loading, error] = useAuthState(firebase.auth());
+
   return (
     <Router>
     <div>
-      <NavBar/>
+      <NavBar isLoggedIn={user} logInWithGoogle={logInWithGoogle} signOut={signOut} />
       <Switch>
         <Route path="/profile">
           <Profile username={"buckybadger"} history={history} />
