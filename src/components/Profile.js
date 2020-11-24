@@ -10,7 +10,7 @@ export default function Profile({ history, username }) {
 
   return (
     <div>
-      <Button variant="primary">Primary</Button>
+      <Button variant="primary">Press 4 milk you democrat</Button>
       <div>
         <p>Hello, {username}</p>
       </div>
