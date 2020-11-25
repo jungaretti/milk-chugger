@@ -44,27 +44,21 @@ function App() {
 
   return (
     <Router>
-      <div>
-        <NavBar
-          logInWithGoogle={logInWithGoogle}
-          signOut={signOut}
-          user={user}
-        />
-        <Switch>
-          <Route path="/profile">
-            <Profile
-              uid={"rM1MFZbeujbk5yhbWSVJpXo2LJG2"}
-              database={firebase.database()}
-            />
-          </Route>
-          <Route path="/dashboard">
-            <GlobalTotals gallons={56} regions={regions} users={users} />
-          </Route>
-          <Route path="/log">
-            <Log gallons={4} />
-          </Route>
-        </Switch>
-      </div>
+      <NavBar logInWithGoogle={logInWithGoogle} signOut={signOut} user={user} />
+      <Switch>
+        <Route path="/profile">
+          <Profile
+            uid={"rM1MFZbeujbk5yhbWSVJpXo2LJG2"}
+            database={firebase.database()}
+          />
+        </Route>
+        <Route path="/dashboard">
+          <GlobalTotals gallons={56} regions={regions} users={users} />
+        </Route>
+        <Route path="/log">
+          <Log gallons={4} />
+        </Route>
+      </Switch>
     </Router>
   );
 }
