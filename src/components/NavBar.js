@@ -3,11 +3,11 @@ import { Navbar, Nav, Button } from "react-bootstrap";
 export default function NavBar({ logInWithGoogle, signOut, user }) {
   return (
     <Navbar bg="light" expand="lg">
-      <Navbar.Brand href="dashboard">Milk Chugger</Navbar.Brand>
+      <Navbar.Brand href="/">Milk Chugger</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link href="dashboard">Dashboard</Nav.Link>
+          <Nav.Link href="/">Dashboard</Nav.Link>
         </Nav>
         {user ? (
           <Nav>

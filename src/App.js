@@ -43,23 +43,25 @@ function App() {
   const [user, loading, error] = useAuthState(firebase.auth());
 
   return (
-    <Router>
+    <div>
       <NavBar logInWithGoogle={logInWithGoogle} signOut={signOut} user={user} />
-      <Switch>
-        <Route path="/profile">
-          <Profile
-            uid={"rM1MFZbeujbk5yhbWSVJpXo2LJG2"}
-            database={firebase.database()}
-          />
-        </Route>
-        <Route path="/dashboard">
-          <GlobalTotals gallons={56} regions={regions} users={users} />
-        </Route>
-        <Route path="/log">
-          <Log gallons={4} />
-        </Route>
-      </Switch>
-    </Router>
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <GlobalTotals gallons={56} regions={regions} users={users} />
+          </Route>
+          <Route path="/profile">
+            <Profile
+              uid={"rM1MFZbeujbk5yhbWSVJpXo2LJG2"}
+              database={firebase.database()}
+            />
+          </Route>
+          <Route path="/log">
+            <Log gallons={4} />
+          </Route>
+        </Switch>
+      </Router>
+    </div>
   );
 }
 
