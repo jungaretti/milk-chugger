@@ -1,14 +1,14 @@
 import "./App.css";
-import Log from "./components/Log";
+import Add from "./components/Add";
 import Profile from "./components/Profile";
 import GlobalTotals from "./components/GlobalTotals";
 import NavBar from "./components/NavBar";
 
 import firebase from "firebase/app";
 import "firebase/auth";
+import "firebase/database";
 import { useAuthState } from "react-firebase-hooks/auth";
 
-import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 const history = {};
@@ -43,26 +43,28 @@ function App() {
   const [user, loading, error] = useAuthState(firebase.auth());
 
   return (
-    <Router>
-      <div>
-        <NavBar
-          logInWithGoogle={logInWithGoogle}
-          signOut={signOut}
-          user={user}
-        />
+    <div>
+      <NavBar logInWithGoogle={logInWithGoogle} signOut={signOut} user={user} />
+      <Router>
         <Switch>
-          <Route path="/profile">
-            <Profile username={"buckybadger"} history={history} />
-          </Route>
-          <Route path="/dashboard">
+          <Route exact path="/">
             <GlobalTotals gallons={56} regions={regions} users={users} />
           </Route>
-          <Route path="/log">
-            <Log gallons={4} />
+          <Route path="/add">
+            <Add
+              uid={"rM1MFZbeujbk5yhbWSVJpXo2LJG2"}
+              database={firebase.database()}
+            />
+          </Route>
+          <Route path="/profile">
+            <Profile
+              uid={"rM1MFZbeujbk5yhbWSVJpXo2LJG2"}
+              database={firebase.database()}
+            />
           </Route>
         </Switch>
-      </div>
-    </Router>
+      </Router>
+    </div>
   );
 }
 
