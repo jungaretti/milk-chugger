@@ -11,7 +11,7 @@ export default function NavBar({ logInWithGoogle, signOut, user }) {
         </Nav>
         {user ? (
           <Nav>
-            <Nav.Link href="log">Drink</Nav.Link>
+            <Nav.Link href="add">Drink</Nav.Link>
             <Nav.Link href="profile">Profile</Nav.Link>
             <Button onClick={signOut}>Sign Out</Button>
           </Nav>

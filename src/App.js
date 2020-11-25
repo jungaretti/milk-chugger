@@ -1,5 +1,5 @@
 import "./App.css";
-import Log from "./components/Log";
+import Add from "./components/Add";
 import Profile from "./components/Profile";
 import GlobalTotals from "./components/GlobalTotals";
 import NavBar from "./components/NavBar";
@@ -50,14 +50,17 @@ function App() {
           <Route exact path="/">
             <GlobalTotals gallons={56} regions={regions} users={users} />
           </Route>
+          <Route path="/add">
+            <Add
+              uid={"rM1MFZbeujbk5yhbWSVJpXo2LJG2"}
+              database={firebase.database()}
+            />
+          </Route>
           <Route path="/profile">
             <Profile
               uid={"rM1MFZbeujbk5yhbWSVJpXo2LJG2"}
               database={firebase.database()}
             />
-          </Route>
-          <Route path="/log">
-            <Log gallons={4} />
           </Route>
         </Switch>
       </Router>
