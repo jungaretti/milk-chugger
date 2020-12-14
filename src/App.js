@@ -55,16 +55,10 @@ function App() {
             <GlobalTotals gallons={56} regions={regions} users={users} />
           </Route>
           <Route path="/add">
-            <Add
-              uid={"rM1MFZbeujbk5yhbWSVJpXo2LJG2"}
-              database={firebase.database()}
-            />
+            <Add user={user} firestore={firebase.firestore()} />
           </Route>
           <Route path="/profile">
-            <Profile
-              uid={"rM1MFZbeujbk5yhbWSVJpXo2LJG2"}
-              database={firebase.database()}
-            />
+            <Profile user={user} firestore={firebase.firestore()} />
           </Route>
         </Switch>
       </Router>
