@@ -2,6 +2,7 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useDocumentData } from "react-firebase-hooks/firestore";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -39,7 +40,10 @@ function signOut() {
 }
 
 function App() {
-  const [user, loading, error] = useAuthState(firebase.auth());
+  const [user] = useAuthState(firebase.auth());
+
+  const profileRef = firebase.firestore().doc(`users/${user?.uid}`);
+  const [profile] = useDocumentData(profileRef);
 
   return (
     <div>
@@ -51,9 +55,13 @@ function App() {
         />
         <Switch>
           {user && (
-          <Route path="/profile">
-              <Profile user={user} loading={userLoading} error={userError} />
-          </Route>
+            <Route path="/profile">
+              <Profile
+                email={user.email}
+                name={profile?.name}
+                state={profile?.state}
+              />
+            </Route>
           )}
           <Route path="/">
             <GlobalTotals gallons={56} regions={regions} users={users} />
