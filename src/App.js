@@ -4,7 +4,12 @@ import "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useDocumentData } from "react-firebase-hooks/firestore";
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 
 import "./App.css";
 import NavBar from "./components/NavBar";
@@ -54,15 +59,15 @@ function App() {
           user={user}
         />
         <Switch>
-          {user && (
-            <Route path="/profile">
+          <Route path="/profile">
+            {user && (
               <Profile
                 email={user.email}
                 name={profile?.name}
                 state={profile?.state}
               />
-            </Route>
-          )}
+            )}
+          </Route>
           <Route path="/">
             <GlobalTotals gallons={56} regions={regions} users={users} />
           </Route>
