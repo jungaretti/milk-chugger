@@ -50,9 +50,11 @@ function App() {
           user={user}
         />
         <Switch>
+          {user && (
           <Route path="/profile">
-            <Profile user={user} firestore={firebase.firestore()} />
+              <Profile user={user} loading={userLoading} error={userError} />
           </Route>
+          )}
           <Route path="/">
             <GlobalTotals gallons={56} regions={regions} users={users} />
           </Route>
