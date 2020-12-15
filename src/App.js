@@ -6,10 +6,9 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import "./App.css";
-import Add from "./components/Add";
+import NavBar from "./components/NavBar";
 import Profile from "./components/Profile";
 import GlobalTotals from "./components/GlobalTotals";
-import NavBar from "./components/NavBar";
 
 const history = {};
 history[new Date()] = 56;
@@ -51,14 +50,11 @@ function App() {
           user={user}
         />
         <Switch>
-          <Route exact path="/">
-            <GlobalTotals gallons={56} regions={regions} users={users} />
-          </Route>
-          <Route path="/add">
-            <Add user={user} firestore={firebase.firestore()} />
-          </Route>
           <Route path="/profile">
             <Profile user={user} firestore={firebase.firestore()} />
+          </Route>
+          <Route path="/">
+            <GlobalTotals gallons={56} regions={regions} users={users} />
           </Route>
         </Switch>
       </Router>

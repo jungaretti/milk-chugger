@@ -12,9 +12,6 @@ export default function NavBar({ logInWithGoogle, signOut, user }) {
         <Nav className="mr-auto"></Nav>
         {user ? (
           <Nav>
-            <LinkContainer to="/add">
-              <Nav.Link>Add</Nav.Link>
-            </LinkContainer>
             <LinkContainer to="profile">
               <Nav.Link>Profile</Nav.Link>
             </LinkContainer>
