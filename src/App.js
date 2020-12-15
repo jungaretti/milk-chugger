@@ -49,9 +49,16 @@ function App() {
   const [profile] = useDocumentData(profileRef);
 
   const milksRef = firebase.firestore().collection("milks");
-  const milksQuery = milksRef.where("drinker", "==", profileRef);
-  const [milks] = useCollectionData(milksQuery, { idField: "id" });
-  console.log(milks);
+  const milksQuery = milksRef.where("drinker", "==", user ? user.uid : null);
+  const [milks] = useCollectionData(milksQuery);
+
+  function drinkMilks(quantity) {
+    milksRef.add({
+      drinker: user.uid,
+      gallons: quantity,
+      time: firebase.firestore.FieldValue.serverTimestamp(),
+    });
+  }
 
   return (
     <div>
@@ -69,6 +76,7 @@ function App() {
                 name={profile?.name}
                 state={profile?.state}
                 milks={milks}
+                drinkMilks={drinkMilks}
               />
             )}
           </Route>
