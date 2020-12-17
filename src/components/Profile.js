@@ -1,18 +1,22 @@
 import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
 
-function DeleteButton() {
+function DeleteButton({ onDelete }) {
   return (
-    <Button
-      variant="primary"
-      onClick={() => console.log(`Should delete document ${"hello"}`)}
-    >
+    <Button variant="primary" onClick={onDelete}>
       Delete
     </Button>
   );
 }
 
-export default function Profile({ email, name, state, milks, drinkMilks }) {
+export default function Profile({
+  email,
+  name,
+  state,
+  milks,
+  drinkMilks,
+  deleteMilk,
+}) {
   return (
     <div>
       <div>
@@ -39,12 +43,12 @@ export default function Profile({ email, name, state, milks, drinkMilks }) {
           </thead>
           <tbody>
             {milks &&
-              milks.map((milk) => (
-                <tr>
-                  <td>{milk.time?.toDate().toLocaleString()}</td>
-                  <td>{milk.gallons}</td>
+              milks.docs.map((milkDoc) => (
+                <tr key={milkDoc.id}>
+                  <td>{milkDoc.data().time?.toDate().toLocaleString()}</td>
+                  <td>{milkDoc.data().gallons}</td>
                   <td>
-                    <DeleteButton />
+                    <DeleteButton onDelete={() => deleteMilk(milkDoc.id)} />
                   </td>
                 </tr>
               ))}

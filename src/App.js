@@ -2,10 +2,7 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
-import {
-  useCollectionData,
-  useDocumentData,
-} from "react-firebase-hooks/firestore";
+import { useCollection, useDocumentData } from "react-firebase-hooks/firestore";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -50,7 +47,7 @@ function App() {
 
   const milksRef = firebase.firestore().collection("milks");
   const milksQuery = milksRef.where("drinker", "==", user ? user.uid : null);
-  const [milks] = useCollectionData(milksQuery);
+  const [milks] = useCollection(milksQuery);
 
   function drinkMilks(quantity) {
     milksRef.add({
@@ -58,6 +55,10 @@ function App() {
       gallons: quantity,
       time: firebase.firestore.FieldValue.serverTimestamp(),
     });
+  }
+
+  function deleteMilk(id) {
+    milksRef.doc(id).delete();
   }
 
   return (
@@ -77,6 +78,7 @@ function App() {
                 state={profile?.state}
                 milks={milks}
                 drinkMilks={drinkMilks}
+                deleteMilk={deleteMilk}
               />
             )}
           </Route>
