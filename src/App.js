@@ -2,14 +2,14 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useDocumentData } from "react-firebase-hooks/firestore";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import "./App.css";
-import Add from "./components/Add";
+import NavBar from "./components/NavBar";
 import Profile from "./components/Profile";
 import GlobalTotals from "./components/GlobalTotals";
-import NavBar from "./components/NavBar";
 
 const history = {};
 history[new Date()] = 56;
@@ -40,7 +40,10 @@ function signOut() {
 }
 
 function App() {
-  const [user, loading, error] = useAuthState(firebase.auth());
+  const [user] = useAuthState(firebase.auth());
+
+  const profileRef = firebase.firestore().doc(`users/${user?.uid}`);
+  const [profile] = useDocumentData(profileRef);
 
   return (
     <div>
@@ -51,14 +54,17 @@ function App() {
           user={user}
         />
         <Switch>
-          <Route exact path="/">
+          {user && (
+            <Route path="/profile">
+              <Profile
+                email={user.email}
+                name={profile?.name}
+                state={profile?.state}
+              />
+            </Route>
+          )}
+          <Route path="/">
             <GlobalTotals gallons={56} regions={regions} users={users} />
-          </Route>
-          <Route path="/add">
-            <Add user={user} firestore={firebase.firestore()} />
-          </Route>
-          <Route path="/profile">
-            <Profile user={user} firestore={firebase.firestore()} />
           </Route>
         </Switch>
       </Router>

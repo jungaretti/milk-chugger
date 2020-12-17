@@ -1,7 +1,10 @@
-export default function Profile({ user, firestore }) {
+export default function Profile({ email, name, state }) {
   return (
     <div>
-      <p>Profile needs to be updated for Firestore</p>
+      <h3>Profile</h3>
+      <p>{email}</p>
+      <p>{name}</p>
+      <p>{state}</p>
     </div>
   );
 }
