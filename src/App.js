@@ -2,7 +2,7 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useDocumentData } from "react-firebase-hooks/firestore";
+import { useCollection, useDocumentData } from "react-firebase-hooks/firestore";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -45,6 +45,22 @@ function App() {
   const profileRef = firebase.firestore().doc(`users/${user?.uid}`);
   const [profile] = useDocumentData(profileRef);
 
+  const milksRef = firebase.firestore().collection("milks");
+  const milksQuery = milksRef.where("drinker", "==", user ? user.uid : null);
+  const [milks] = useCollection(milksQuery);
+
+  function createMilk(gallons) {
+    milksRef.add({
+      drinker: user.uid,
+      gallons: gallons,
+      time: firebase.firestore.FieldValue.serverTimestamp(),
+    });
+  }
+
+  function deleteMilk(id) {
+    milksRef.doc(id).delete();
+  }
+
   return (
     <div>
       <Router>
@@ -54,15 +70,18 @@ function App() {
           user={user}
         />
         <Switch>
-          {user && (
-            <Route path="/profile">
+          <Route path="/profile">
+            {user && (
               <Profile
                 email={user.email}
                 name={profile?.name}
                 state={profile?.state}
+                milks={milks}
+                createMilk={createMilk}
+                deleteMilk={deleteMilk}
               />
-            </Route>
-          )}
+            )}
+          </Route>
           <Route path="/">
             <GlobalTotals gallons={56} regions={regions} users={users} />
           </Route>
