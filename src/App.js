@@ -44,8 +44,12 @@ function App() {
 
   return (
     <div>
-      <NavBar logInWithGoogle={logInWithGoogle} signOut={signOut} user={user} />
       <Router>
+        <NavBar
+          logInWithGoogle={logInWithGoogle}
+          signOut={signOut}
+          user={user}
+        />
         <Switch>
           <Route exact path="/">
             <GlobalTotals gallons={56} regions={regions} users={users} />
