@@ -40,7 +40,7 @@ function signOut() {
 }
 
 function App() {
-  const [user] = useAuthState(firebase.auth());
+  const [user, userLoading] = useAuthState(firebase.auth());
 
   const profileRef = firebase.firestore().doc(`users/${user?.uid}`);
   const [profile] = useDocumentData(profileRef);
