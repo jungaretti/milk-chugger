@@ -14,14 +14,14 @@ export default function Profile({
   name,
   state,
   milks,
-  drinkMilks,
+  createMilk,
   deleteMilk,
 }) {
   return (
     <div>
       <div>
         <h3>Drink</h3>
-        <Button variant="primary" onClick={() => drinkMilks(1)}>
+        <Button variant="primary" onClick={() => createMilk(1)}>
           Chug One!
         </Button>
       </div>

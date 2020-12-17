@@ -49,10 +49,10 @@ function App() {
   const milksQuery = milksRef.where("drinker", "==", user ? user.uid : null);
   const [milks] = useCollection(milksQuery);
 
-  function drinkMilks(quantity) {
+  function createMilk(gallons) {
     milksRef.add({
       drinker: user.uid,
-      gallons: quantity,
+      gallons: gallons,
       time: firebase.firestore.FieldValue.serverTimestamp(),
     });
   }
@@ -77,7 +77,7 @@ function App() {
                 name={profile?.name}
                 state={profile?.state}
                 milks={milks}
-                drinkMilks={drinkMilks}
+                createMilk={createMilk}
                 deleteMilk={deleteMilk}
               />
             )}
