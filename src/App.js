@@ -1,15 +1,15 @@
+import firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/firestore";
+import { useAuthState } from "react-firebase-hooks/auth";
+
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
 import "./App.css";
 import Add from "./components/Add";
 import Profile from "./components/Profile";
 import GlobalTotals from "./components/GlobalTotals";
 import NavBar from "./components/NavBar";
-
-import firebase from "firebase/app";
-import "firebase/auth";
-import "firebase/database";
-import { useAuthState } from "react-firebase-hooks/auth";
-
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 const history = {};
 history[new Date()] = 56;
@@ -55,16 +55,10 @@ function App() {
             <GlobalTotals gallons={56} regions={regions} users={users} />
           </Route>
           <Route path="/add">
-            <Add
-              uid={"rM1MFZbeujbk5yhbWSVJpXo2LJG2"}
-              database={firebase.database()}
-            />
+            <Add user={user} firestore={firebase.firestore()} />
           </Route>
           <Route path="/profile">
-            <Profile
-              uid={"rM1MFZbeujbk5yhbWSVJpXo2LJG2"}
-              database={firebase.database()}
-            />
+            <Profile user={user} firestore={firebase.firestore()} />
           </Route>
         </Switch>
       </Router>

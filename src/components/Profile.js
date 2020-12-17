@@ -1,18 +1,7 @@
-import ProfileConsumption from "./ProfileConsumption";
-import ProfileHistory from "./ProfileHistory";
-import ProfileStatistics from "./ProfileStatistics";
-
-import { useObject } from "react-firebase-hooks/database";
-
-export default function Profile({ uid, database }) {
-  const [value, loading, error] = useObject(database.ref(`gallons/${uid}`));
-  const gallons = value?.val() ?? 0;
-
+export default function Profile({ user, firestore }) {
   return (
     <div>
-      <ProfileConsumption gallons={gallons} />
-      <ProfileStatistics gallons={gallons} />
-      {/* <ProfileHistory history={history} /> */}
+      <p>Profile needs to be updated for Firestore</p>
     </div>
   );
 }
