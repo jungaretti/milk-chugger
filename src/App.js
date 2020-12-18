@@ -4,7 +4,12 @@ import "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollection, useDocumentData } from "react-firebase-hooks/firestore";
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 
 import "./App.css";
 import NavBar from "./components/NavBar";
@@ -40,7 +45,7 @@ function signOut() {
 }
 
 function App() {
-  const [user] = useAuthState(firebase.auth());
+  const [user, userLoading] = useAuthState(firebase.auth());
 
   const profileRef = firebase.firestore().doc(`users/${user?.uid}`);
   const [profile] = useDocumentData(profileRef);
@@ -70,6 +75,9 @@ function App() {
           user={user}
         />
         <Switch>
+          <Route exact path="/">
+            <GlobalTotals gallons={56} regions={regions} users={users} />
+          </Route>
           <Route path="/profile">
             {user && (
               <Profile
@@ -81,9 +89,8 @@ function App() {
                 deleteMilk={deleteMilk}
               />
             )}
-          </Route>
-          <Route path="/">
-            <GlobalTotals gallons={56} regions={regions} users={users} />
+            {/* Need to check for loading or else it'll redirect every time */}
+            {!userLoading && !user && <Redirect to="/" />}
           </Route>
         </Switch>
       </Router>
